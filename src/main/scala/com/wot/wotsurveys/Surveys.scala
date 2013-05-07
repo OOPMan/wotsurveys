@@ -20,7 +20,9 @@ class Surveys extends WotSurveysStack with SlickSupport with JSONSupport {
         s <- Surveys if s.active === true
       } yield s
       if(id.length > 0) q = q.filter { s => s.id === id.toInt }
-      q.list map { case (id, name, active) => Map("id" -> id, "name" -> name) }
+      Map(
+        "success" -> true,
+        "surveys" -> q.list.map { case (id, name, active) => Map("id" -> id, "name" -> name) })
     }
   }
 
