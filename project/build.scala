@@ -42,7 +42,7 @@ object WotSurveysBuild extends Build {
           "org.scalatra" %% "scalatra-specs2" % ScalatraVersion % "test",
           "org.scalatra" %% "scalatra-json" % ScalatraVersion,
           "org.json4s"   %% "json4s-jackson" % "3.1.0",
-          "ch.qos.logback" % "logback-classic" % "1.0.6" % "runtime",
+          "ch.qos.logback" % "logback-classic" % "1.0.11" % "runtime",
           "org.eclipse.jetty" % "jetty-webapp" % "8.1.8.v20121106" % "compile;container",
           "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "compile;container;provided;test" artifacts (Artifact("javax.servlet", "jar", "jar"))
         ),
