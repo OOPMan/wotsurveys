@@ -21,7 +21,26 @@ Ext.application({
             layout: 'fit',
             items: [
                 {
-                    xtype: 'SurveyList'
+                    xtype: 'panel',
+                    layout: 'border',
+                    items: [
+                        {
+                            xtype: 'panel',
+                            region: 'north',
+                            html: 'User Info Panel'
+                        },
+                        {
+                            xtype: 'panel',
+                            region: 'center',
+                            html: 'Survey Details Panel'
+                        },
+                        {
+                            xtype: 'SurveyList',
+                            region: 'west',
+                            width: 100
+
+                        }
+                    ]
                 }
             ]
         });
