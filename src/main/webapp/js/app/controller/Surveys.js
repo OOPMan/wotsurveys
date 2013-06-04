@@ -13,6 +13,14 @@ Ext.define('WoTSurveys.controller.Surveys', {
     extend: 'Ext.app.Controller',
     stores: ['Surveys'],
     models: ['Survey'],
-    views: ['Surveys.List']
+    views: ['Surveys.List'],
+
+    init: function() {
+        this.control({
+            'SurveyList': {
+                itemclick: function() { alert('Clicked'); }
+            }
+        });
+    }
     //TODO: Implement
 });
