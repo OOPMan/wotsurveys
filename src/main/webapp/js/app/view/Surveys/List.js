@@ -10,19 +10,13 @@
  */
 
 Ext.define('WoTSurveys.view.Surveys.List', {
-    extend: 'Ext.grid.Panel',
+    extend: 'Ext.view.View',
     alias: 'widget.SurveyList',
-    title: 'All Surveys',
     store: 'Surveys',
-
-    initComponent: function () {
-        this.columns = [
-            { header: 'ID', dataIndex: 'id', flex: 1 },
-            { header: 'Name', dataIndex: 'name', flex: 1 }
-        ];
-
-        this.callParent(arguments);
-    }
+    tpl: new Ext.XTemplate('<tpl for="."><span id="{id}">{name}</span><br/></tpl>'),
+    itemSelector: 'span',
+    emptyText: 'No Surveys Available',
+    data: []
 
 });
 
