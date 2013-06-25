@@ -34,7 +34,7 @@ object WotSurveysBuild extends Build {
         scalaVersion := ScalaVersion,
         resolvers += "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/",
         libraryDependencies ++= Seq(
-          "com.typesafe.slick" %% "slick" % "1.0.0",
+          "com.typesafe.slick" %% "slick" % "1.0.1",
           "postgresql" % "postgresql" % "9.1-901.jdbc4",
           "c3p0" % "c3p0" % "0.9.1.2",
           "org.scalatra" %% "scalatra" % ScalatraVersion,
