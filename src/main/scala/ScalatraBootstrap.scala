@@ -15,6 +15,7 @@ import javax.servlet.ServletContext
 class ScalatraBootstrap extends LifeCycle {
   override def init(context: ServletContext) {
     context.mount(new Surveys, "/surveys/*")
+    context.mount(new Users, "/users/*")
     context.mount(new WoTSurveys, "/*")
   }
 }

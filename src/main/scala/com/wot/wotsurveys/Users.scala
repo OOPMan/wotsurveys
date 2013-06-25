@@ -10,6 +10,23 @@ package com.wot.wotsurveys
  * to the terms contained in the LICENSE file.
  */
 
-class Users {
+class Users extends WotSurveysStack with SlickSupport with JSONSupport {
+  import profile.simple._
+  import Database.threadLocalSession
+
+  get("/") {
+    //TODO: Implement proper User layer. Result returned should be the logged in user or an indicator that the user
+    //TODO: needs to login. The system should redirect the user to a WG OpenID login page
+    Map(
+      "success" -> true,
+      "users" -> List(Map(
+        "name" -> "OOPMan",
+        "server" -> "NA"
+    )))
+  }
+
+  get("/:id") {
+    //TODO: Admin function
+  }
 
 }
