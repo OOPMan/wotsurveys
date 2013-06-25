@@ -11,5 +11,9 @@
 
 Ext.define('WoTSurveys.model.Survey', {
     extend: 'Ext.data.Model',
-    fields: [ 'id', 'name' ]
+    fields: [
+        { name: 'id', type: 'int'},
+        { name: 'name', type: 'string'}
+    ],
+    hasMany: 'Question'
 });
