@@ -13,14 +13,16 @@ Ext.define('WoTSurveys.controller.Surveys', {
     extend: 'Ext.app.Controller',
     stores: ['Surveys'],
     models: ['Survey'],
-    views: ['Surveys.List'],
+    views: ['Surveys.List', 'Surveys.Panel'],
 
     init: function() {
         this.control({
             'SurveyList': {
-                itemclick: function() { alert('Clicked'); }
+                itemclick: function() {
+                    //TODO: Trigger central SurveyPanel to load selected Survey
+                    alert('Clicked');
+                }
             }
         });
     }
-    //TODO: Implement
 });
