@@ -30,7 +30,7 @@ Ext.application({
                             html: 'User Info Panel'
                         },
                         {
-                            xtype: 'panel',
+                            xtype: 'SurveyPanel',
                             region: 'center',
                             html: 'Survey Details Panel'
                         },
