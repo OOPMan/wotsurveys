@@ -9,8 +9,15 @@
  * to the terms contained in the LICENSE file.
  */
 
-Ext.define('WoTSurveys.view.Surveys.View', {
+Ext.define('WoTSurveys.view.Surveys.Panel', {
     extend: 'Ext.panel.Panel',
+    alias: 'widget.SurveyPanel',
+    store: 'Survey',
+    layout: 'card', //TODO: Complete card layout details
 
+    initComponent: function() {
+        this.callParent(arguments);
+    }
 
+    //TODO: Add code to handle incoming events?
 });
