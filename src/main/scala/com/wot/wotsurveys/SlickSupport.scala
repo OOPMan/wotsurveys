@@ -31,10 +31,11 @@ trait SlickSupport extends ScalatraServlet {
 
   val profile = cpds.getDriverClass match {
     case "org.postgresql.Driver" => scala.slick.driver.PostgresDriver
+    //TODO: Add support for other common Drivers
   }
 
   import profile.simple._
-  import Database.threadLocalSession
+  import Database.forDataSource
 
   def closeDbConnection() {
     logger.info("Closing c3po connection pool")
@@ -116,5 +117,6 @@ trait SlickSupport extends ScalatraServlet {
     def * = username ~ server ~ question_id ~ answer_id ~ survey_id
   }
 
-
+  //TODO: Add Tables for Stats Handling
+  // Either link player stats into per User_Questions_Answers_Surveys or just link it into the Users and update. Latter probably easier...
 }

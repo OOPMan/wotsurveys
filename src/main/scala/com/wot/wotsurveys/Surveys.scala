@@ -12,17 +12,48 @@ package com.wot.wotsurveys
 
 class Surveys extends WotSurveysStack with SlickSupport with JSONSupport {
   import profile.simple._
-  import Database.threadLocalSession
+  import slick.session._
 
-  def getSurveys(id: String = "") = {
-    db withSession {
+  // TODO: This may need to move elsewhere if it get used more generally
+  protected def getAnswersForQuestion(questionId: Int)(implicit ss: Session) = {
+      val query = for {
+        a <- Answers
+        qa <- Questions_Answers if a.id === qa.answer_id && qa.question_id === questionId
+      } yield a
+      query.list.map { case (id, answer) => Map (
+        "id" -> id,
+        "answer" -> answer
+      )}
+  }
+
+  // TODO: This may need to move elsewhere if it get used more generally
+  protected def getQuestionsForSurvey(surveyId: Int)(implicit ss: Session) = {
+      val query = for {
+        q <- Questions if q.active === true
+        sq <- Surveys_Questions if q.id === sq.question_id && sq.survey_id == surveyId
+      } yield q
+      query.list.map { case (id, question, maximum_answers, active) => Map(
+        "id" -> id,
+        "question" -> question,
+        "maximum_answers" -> maximum_answers,
+        "answers" -> getAnswersForQuestion(id)
+      )}
+  }
+
+  //TODO: Should Session come from implicit parameter?
+  def getSurveys(id: String = "", extended: Boolean = false) = {
+    db withSession { implicit ss: Session =>
       var q = for {
         s <- Surveys if s.active === true
       } yield s
       if(id.length > 0) q = q.filter { s => s.id === id.toInt }
       Map(
         "success" -> true,
-        "surveys" -> q.list.map { case (id, name, active) => Map("id" -> id, "name" -> name) })
+        "surveys" -> q.list.map { case (id, name, active) => Map(
+          "id" -> id,
+          "name" -> name,
+          "questions" -> (if(!extended) Nil else getQuestionsForSurvey(id))
+        )})
     }
   }
 
@@ -32,5 +63,9 @@ class Surveys extends WotSurveysStack with SlickSupport with JSONSupport {
 
   get("/:id") {
     getSurveys(params("id"))
+  }
+
+  get("/extended/:id") {
+    getSurveys(params("id"), true)
   }
 }
